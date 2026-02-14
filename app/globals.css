@@ -1,0 +1,102 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===== Global Styles ===== */
+:root {
+  --primary: #2F6B3C;
+  --primary-light: #5FA57A;
+  --sand: #C7A57A;
+  --sand-light: #E8D8C3;
+  --beige: #F7F3EE;
+  --gold: #F2C94C;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--sand) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 6px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+*::-webkit-scrollbar-thumb {
+  background: var(--sand);
+  border-radius: 100px;
+}
+
+body {
+  background: linear-gradient(135deg, #F7F3EE 0%, #FFFDF9 50%, #F0EDE6 100%);
+  min-height: 100vh;
+}
+
+/* ===== Premium Card Style ===== */
+@layer components {
+  .card {
+    @apply bg-white rounded-2xl border border-sand-200/50 shadow-card transition-all duration-300;
+  }
+  .card:hover {
+    @apply shadow-card-hover -translate-y-0.5;
+  }
+  
+  .stat-card {
+    @apply relative overflow-hidden bg-white rounded-2xl border border-sand-200/50 shadow-card p-6 transition-all duration-300;
+  }
+  .stat-card:hover {
+    @apply shadow-card-hover -translate-y-1;
+  }
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    border-radius: 1rem 1rem 0 0;
+  }
+  
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-5 py-2.5 bg-primary text-white font-semibold rounded-xl 
+           hover:bg-primary-dark active:scale-[0.98] transition-all duration-200 shadow-sm hover:shadow-md;
+  }
+  
+  .btn-outline {
+    @apply inline-flex items-center gap-2 px-4 py-2 border-2 border-primary/20 text-primary font-medium rounded-xl
+           hover:bg-primary-50 hover:border-primary/40 active:scale-[0.98] transition-all duration-200;
+  }
+  
+  .badge {
+    @apply inline-flex items-center gap-1 px-3 py-1 text-xs font-bold rounded-full tracking-wide uppercase;
+  }
+  
+  .input-field {
+    @apply w-full px-4 py-3 border-2 border-sand-200 rounded-xl text-sm 
+           focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all duration-200
+           placeholder:text-sand-400;
+  }
+  
+  .nav-link {
+    @apply flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200;
+  }
+  .nav-link:hover {
+    @apply bg-primary-50 text-primary;
+  }
+  .nav-link.active {
+    @apply bg-primary text-white shadow-md;
+  }
+}
+
+/* ===== Animations ===== */
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.loading-shimmer {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
